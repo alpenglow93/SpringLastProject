@@ -16,7 +16,8 @@ import lombok.Data;
 	 PRICE                                              VARCHAR2(100)
  */
 @Data
-public class FoodVO {
+public class FoodVO 
+{
 	private int no;
 	private String name,address,phone,type,parking,poster,time,content,price,theme;
 	private double score;
