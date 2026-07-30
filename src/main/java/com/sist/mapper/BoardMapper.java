@@ -19,7 +19,7 @@ public interface BoardMapper {
 	@Select("SELECT COUNT(*) FROM springReplyBoard ")
 	public int boardRowCount();
 	
-	@Insert("INSERT INTO springBoardReplyBoard(no,name,subject,content,pwd,group_id) "
+	@Insert("INSERT INTO springReplyBoard(no,name,subject,content,pwd,group_id) "
 			+ "VALUES(srb_no_seq.nextval,#{name},#{subject},#{content},#{pwd}, "
 			+ "(SELECT NVL(MAX(group_id)+1,1) FROM springReplyBoard)) ")
 	public void boardInsert(BoardVO vo);
