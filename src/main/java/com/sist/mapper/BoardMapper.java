@@ -48,9 +48,9 @@ public interface BoardMapper {
 	public void boardStepIncrement(@Param("group_id") int group_id, @Param("group_step") int group_step);
 	// 여러개 값 가져오기 => @Param , Map , VO
 	// 3. INSERT
-	@Insert("INSERT INTO springBoardReplyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab,root,depth) "
+	@Insert("INSERT INTO springReplyBoard(no,name,subject,content,pwd,group_id,group_step,group_tab,root,depth) "
 			+ "VALUES(srb_no_seq.nextval,#{name},#{subject},#{content},#{pwd}, "
-			+ "#{group_id},#{group_step},#{group_tab},#{root},#{depth} ")
+			+ "#{group_id},#{group_step},#{group_tab},#{root},#{depth}) ")
 	public void boardReplyInsert(BoardVO vo);
 	// 4. UPDATE
 	@Update("UPDATE springReplyBoard SET "
@@ -71,5 +71,10 @@ public interface BoardMapper {
 	 */
 	
 	// 수정
+	@Update("UPDATE springReplyBoard "
+			+ "SET name=#{name}, subject=#{subject}, content=#{content} "
+			+ "WHERE no=#{no} AND pwd=#{pwd} ")
+	public void boardUpdate(BoardVO vo);
+	
 	// 삭제	 ===> Transaction
 }

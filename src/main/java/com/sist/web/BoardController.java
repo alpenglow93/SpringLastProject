@@ -63,4 +63,47 @@ public class BoardController {
 		bService.boardInsert(vo);
 		return "redirect:../board/list.do";
 	}
+	
+	@GetMapping("board/detail.do")
+	public String board_detail(int no, Model model)
+	{
+		BoardVO vo = bService.boardDetailData(no);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_jsp", "../board/detail.jsp");
+		return "main/main";
+	}
+	
+	@GetMapping("board/reply.do")
+	public String board_reply(int no, Model model)
+	{
+		model.addAttribute("no", no);
+		model.addAttribute("main_jsp", "../board/reply.jsp");
+		return "main/main";		
+	}
+	
+	@PostMapping("board/reply_ok.do")
+	public String board_reply_ok(int pno, BoardVO vo)
+	{
+		bService.boardReplyInsert(pno, vo);
+		return "redirect:../board/list.do";		
+	}
+	
+	@GetMapping("board/update.do")
+	public String board_update(int no, Model model)
+	{
+		BoardVO vo = bService.boardDetailData(no);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("no", no);
+		model.addAttribute("main_jsp", "../board/update.jsp");
+		return "main/main";		
+	}
+	
+	@PostMapping("board/update_ok.do")
+	public String board_update_ok(BoardVO vo, int no)
+	{
+		bService.boardUpdate(vo);
+		return "redirect:../board/detail.do?no="+no;		
+	}
 }
