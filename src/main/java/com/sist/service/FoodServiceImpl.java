@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class FoodServiceImpl implements FoodService
 {
 	private final FoodMapper mapper;
-	// 생성자를 이용해서 구현된 mapper 클래스의 주소 받기 => @Autowired 포함
+	
 
 	@Override
 	public List<FoodVO> foodListData(int start, int end) {

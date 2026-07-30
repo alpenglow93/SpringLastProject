@@ -21,7 +21,7 @@ public class MainController {
 	@GetMapping("main/main.do")
 	public String main_main(String page, Model model, HttpServletRequest request)
 	{
-		// 페이징 처리
+		
 		if(page==null)
 			page = "1";
 		int curpage= Integer.parseInt(page);
@@ -29,8 +29,7 @@ public class MainController {
 		final int ROWSIZE = 12;
 		int start = (ROWSIZE*curpage)-(ROWSIZE-1);
 		int end = ROWSIZE * curpage;
-		// OFFSET / rownum
-		// | 0		| 1		=> 시작하는 번호
+		
 		List<FoodVO> list = fService.foodListData(start, end);
 		int totalpage = fService.foodTotalPage();
 		
@@ -52,7 +51,7 @@ public class MainController {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null)
 		{
-			// 최신순으로 가져오기 
+			
 			for(int i = cookies.length-1 ; i >=0; i--)
 			{
 				if(cookies[i].getName().startsWith("food_"))
@@ -72,12 +71,7 @@ public class MainController {
 		
 		model.addAttribute("cList", cList);
 		model.addAttribute("size", cList.size());
-		/*
-		 * 	내장 객체의 사용처
-		 * 		request / response => cookie / fileupload
-		 * 		session => 보안 / 회원 관련
-		 * 		RedirectAttributes : 이미 있는 화면으로 이동
-		 */
+		
 		return "main/main";
 	}
 }
