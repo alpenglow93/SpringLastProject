@@ -21,7 +21,7 @@ jobs:
 
       - name: Stop Tomcat
         run: |
-          /home/sist/apache-tomcat-9.0.120/bin/shutdown.sh || true
+          nohup /home/sist/apache-tomcat-9.0.120/bin/shutdown.sh || true
           sleep 3
       - name: Remove Old war
         run: |
